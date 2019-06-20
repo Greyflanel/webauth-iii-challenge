@@ -58,14 +58,14 @@ server.post("/login", (req, res) => {
     });
 });
 
-server.get('/', restricted, checkRole('Student'),(req, res) => {
+server.get('/users', restricted, checkRole('Student'),(req, res) => {
   Users.find()
     .then(users => {
       res.json(users);
     })
-    .catch(err => res.send(err));
+    .catch(err => console.log(err));
+    
 });
-
 
 function generateToken(user) {
   const payload = {
