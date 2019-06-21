@@ -37,7 +37,7 @@ server.post("/register", (req, res) => {
     console.log(user);
 });
 
-server.post("/login", (req, res) => {
+server.post('/login', (req, res) => {
   let { username, password } = req.body;
 
   Users.findBy({ username })
@@ -58,7 +58,7 @@ server.post("/login", (req, res) => {
     });
 });
 
-server.get('/users', restricted, checkRole('Student'),(req, res) => {
+server.get('/users', restricted, (req, res) => {
   Users.find()
     .then(users => {
       res.json(users);
@@ -70,8 +70,8 @@ server.get('/users', restricted, checkRole('Student'),(req, res) => {
 function generateToken(user) {
   const payload = {
     subject: user.id,
-    username: user.username,
-    roles: ['Student']
+    username: user.username
+    
   };
 
   const options = {
